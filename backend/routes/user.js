@@ -7,20 +7,67 @@ const jwt= require('jsonwebtoken');
 
 
 
-router.post('/user/register' ,async (req,res) =>{
 
-try {
-   data=req.body;
-   usr=new User(data);
-   savedUser=await usr.save();
-   res.send(savedUser);
 
-} catch (errorUser) {
+router.post('/product/register' ,async (req,res) =>{
 
-   res.send(errorUser) 
-}
+   try {
+      data=req.body;
+      usr=new User(data);
+      savedusr=await User.save();
+      res.status(200).send(savedusr);
+   
+   } catch (errorusrc) {
+       
+     res.status(400).send(errorusrc) 
+   }
+   
+});
 
-})
+router.post('/user/getall' ,async (req,res) =>{
+
+  try {
+   usr= await User.find();
+     res.status(200).send(usr);
+  
+  } catch (errorUsrgta) {
+      
+     res.status(400).send(errorUsrgta) 
+  }
+  
+});
+
+
+router.post('/user/delete/:id' ,async (req,res) =>{
+     try{
+        id=req.params.id;
+        deletedusr=await User.findOneAndDelete({_id:id})
+        res.status(200).send(deletedusr);
+     }
+        catch(errorUsrdel)
+        {
+           res.status(400).send(errorUsrdel)
+        } 
+});
+
+
+
+
+router.post('/product/update/:id' ,async (req,res) =>{
+  try{
+     id=req.params.id;
+     newusr=req.body
+     updatedusr=await User.findOneAndDelete({_id:id},newusr)
+     res.status(200).send(updatedusr);
+  }
+     catch(errorusrupd)
+     {
+        res.status(400).send(errorusrupd)
+     } 
+});
+
+
+
 
 
 

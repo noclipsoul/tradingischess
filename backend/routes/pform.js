@@ -11,7 +11,7 @@ router.post('/pform/create' ,async (req,res) =>{
 
     try {
        data=req.body;
-       pfm=new Product(data);
+       pfm=new PForm(data);
        savedpfm=await pfm.save();
        res.status(200).send(savedpfm);
     
