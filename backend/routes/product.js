@@ -1,29 +1,25 @@
 const express=require('express');
 const router = express.Router();
-const User = require('../models/product');
-const jwt= require('jsonwebtoken');
+
+
 const Product = require('../models/product');
 
 
    
-
-    router.post('/product/create' ,async (req,res) =>{
-
-      try {
-         data=req.body;
-         prod=new Product(data);
-         savedprod=await prod.save();
-         res.status(200).send(savedprod);
-      
-      } catch (errorprodc) {
-          
-        res.status(400).send(errorprodc) 
-      }
-      
-   });
+router.post('/create', async (req, res) => {
+   try {
+     const data = req.body;
+     const prod = new Product(data);
+     const savedProd = await prod.save();
+     res.status(200).send(savedProd);
+   } catch (errorprodc) {
+     res.status(400).send(errorprodc);
+   }
+ });
+ 
   
-   router.post('/product/getall' ,async (req,res) =>{
-  
+   router.get('/getall' ,async (req,res) =>{
+      console.log('getall comes');
      try {
       Prod= await Product.find();
         res.status(200).send(Prod);
@@ -36,7 +32,7 @@ const Product = require('../models/product');
   });
   
   
-  router.post('/product/delete/:id' ,async (req,res) =>{
+  router.post('/delete/:id' ,async (req,res) =>{
         try{
            id=req.params.id;
            deletedProd=await Product.findOneAndDelete({_id:id})
@@ -51,7 +47,7 @@ const Product = require('../models/product');
   
   
   
-  router.post('/product/update/:id' ,async (req,res) =>{
+  router.post('/update/:id' ,async (req,res) =>{
      try{
         id=req.params.id;
         newProd=req.body
@@ -68,4 +64,4 @@ const Product = require('../models/product');
 
 
 
-module.exports=router;
+module.exports = router;

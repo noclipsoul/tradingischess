@@ -1,6 +1,7 @@
 const express=require('express');
 const router = express.Router();
 const User = require('../models/user');
+
 const bcrypt = require('bcrypt');
 const jwt= require('jsonwebtoken');
 
@@ -9,7 +10,7 @@ const jwt= require('jsonwebtoken');
 
 
 
-router.post('/product/register' ,async (req,res) =>{
+router.post('/register' ,async (req,res) =>{
 
    try {
       data=req.body;
@@ -24,7 +25,7 @@ router.post('/product/register' ,async (req,res) =>{
    
 });
 
-router.post('/user/getall' ,async (req,res) =>{
+router.post('/getall' ,async (req,res) =>{
 
   try {
    usr= await User.find();
@@ -38,7 +39,7 @@ router.post('/user/getall' ,async (req,res) =>{
 });
 
 
-router.post('/user/delete/:id' ,async (req,res) =>{
+router.post('/delete/:id' ,async (req,res) =>{
      try{
         id=req.params.id;
         deletedusr=await User.findOneAndDelete({_id:id})
@@ -53,7 +54,7 @@ router.post('/user/delete/:id' ,async (req,res) =>{
 
 
 
-router.post('/product/update/:id' ,async (req,res) =>{
+router.post('/update/:id' ,async (req,res) =>{
   try{
      id=req.params.id;
      newusr=req.body

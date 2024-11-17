@@ -7,7 +7,7 @@ const PForm = require('../models/pform');
 
 
 
-router.post('/pform/create' ,async (req,res) =>{
+router.post('/create' ,async (req,res) =>{
 
     try {
        data=req.body;
@@ -22,7 +22,7 @@ router.post('/pform/create' ,async (req,res) =>{
     
  });
 
- router.post('/pform/getall' ,async (req,res) =>{
+ router.post('/getall' ,async (req,res) =>{
 
    try {
       PForm= await PForm.find();
@@ -36,7 +36,7 @@ router.post('/pform/create' ,async (req,res) =>{
 });
 
 
-router.post('/pform/delete/:id' ,async (req,res) =>{
+router.post('/delete/:id' ,async (req,res) =>{
       try{
          id=req.params.id;
          deletedPForm=await PForm.findOneAndDelete({_id:id})
@@ -51,7 +51,7 @@ router.post('/pform/delete/:id' ,async (req,res) =>{
 
 
 
-router.post('/pform/update/:id' ,async (req,res) =>{
+router.post('/update/:id' ,async (req,res) =>{
    try{
       id=req.params.id;
       newPForm=req.body
