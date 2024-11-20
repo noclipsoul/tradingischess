@@ -6,7 +6,20 @@ const bcrypt = require('bcrypt');
 const jwt= require('jsonwebtoken');
 
 
+const multer=require('multer');
+filename='';
+const filestorage= multer.diskStorage({
 
+   distanation:'./uploads',
+   filename:(req,file,redirect)=>{
+      let date=Date.now();
+      let fl=date+'.'+file.mimetype.split('/')[1];
+      redirect(null,fl);
+
+   }
+})
+
+const upload=multer({storage: filestorage});
 
 
 
@@ -15,6 +28,11 @@ router.post('/register' ,async (req,res) =>{
    try {
       data=req.body;
       usr=new User(data);
+
+      salt=bcrypt.genSalt(10);
+      cryptedpass= await bcrypt.hashSync(data.password,salt);
+      usr.password=cryptedpass;
+
       savedusr=await User.save();
       res.status(200).send(savedusr);
    
@@ -24,6 +42,41 @@ router.post('/register' ,async (req,res) =>{
    }
    
 });
+
+
+
+router.post('/login' ,async (req,res) =>{
+
+   try {
+      data=req.body;
+      usr=await User.findOne({email:data.email})
+
+      if(!usr){
+         res.status(402).send('email or password invalid')
+
+      }else{
+         validPass=bcrypt.compareSync(data.password,usr.password)
+         if(!validPass){
+            res.status(402).send('email or password invalid')
+         }else{
+            payload={
+               _id:usr._id,
+               email:usr.email,
+               name:usr.name,
+               image:usr.image
+            }
+            token=jwt.sign(payload,'C2qCY9062F69DUv|73Hq@')
+            res.status(200).send({mytoken:token})
+         }
+      }
+   
+   } catch (errorusrc) {
+       
+     res.status(400).send(errorusrc) 
+   }
+   
+});
+
 
 router.post('/getall' ,async (req,res) =>{
 

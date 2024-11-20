@@ -2,10 +2,14 @@ const mongoose =require('mongoose');
 
 const User=mongoose.model('User' , {
 
-name:{
+fullname:{
     type: String
 },
+
 email:{
+    type: String
+},
+password:{
     type: String
 }
 

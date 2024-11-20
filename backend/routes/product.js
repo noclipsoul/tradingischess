@@ -5,6 +5,25 @@ const router = express.Router();
 const Product = require('../models/product');
 
 
+
+const multer=require('multer');
+filename='';
+const filestorage= multer.diskStorage({
+
+   distanation:'./uploads',
+   filename:(req,file,redirect)=>{
+      let date=Date.now();
+      let fl=date+'.'+file.mimetype.split('/')[1];
+      redirect(null,fl);
+
+   }
+})
+
+const upload=multer({storage: filestorage});
+
+
+
+
    
 router.post('/create', async (req, res) => {
    try {

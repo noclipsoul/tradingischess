@@ -8,7 +8,7 @@ data: [],
 type: 
     {
         name: String,
-        enum: ['checkbox', 'radiobox', 'dropdownlist'], 
+        enum: ['checkbox', radiobox[''], dropdownlist['']], 
         required: true
      }
 });
