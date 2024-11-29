@@ -1,6 +1,6 @@
 const express=require('express');
 const router = express.Router();
-const User = require('../models/user');
+const User = require('../models/users');
 
 const bcrypt = require('bcrypt');
 const jwt= require('jsonwebtoken');
@@ -23,24 +23,35 @@ const upload=multer({storage: filestorage});
 
 
 
+router.post('/create', async (req, res) => {
+   try {
+     const data = req.body;
+     const usr = new User(data);
+     const savedProd = await usr.save();
+     res.status(200).send(savedProd);
+   } catch (errorprodc) {
+     res.status(400).send(errorprodc);
+   }
+ });
+
 router.post('/register' ,async (req,res) =>{
 
-   try {
-      data=req.body;
-      usr=new User(data);
-
-      salt=bcrypt.genSalt(10);
-      cryptedpass= await bcrypt.hashSync(data.password,salt);
-      usr.password=cryptedpass;
-
-      savedusr=await User.save();
-      res.status(200).send(savedusr);
-   
-   } catch (errorusrc) {
-       
-     res.status(400).send(errorusrc) 
-   }
-   
+   data=req.body;
+   usr=new User(data);
+   salt=bcrypt.genSaltSync(10);
+   cryptedPass=await bcrypt.hashSync(data.password,salt);
+   usr.password=cryptedPass;
+   usr.save()
+      .then(
+         (saved)=>{
+            res.status(200).send(saved)
+         }
+      )
+      .catch(
+         (err)=>{
+            res.status(400).send(err)
+         }
+      )
 });
 
 
@@ -78,10 +89,10 @@ router.post('/login' ,async (req,res) =>{
 });
 
 
-router.post('/getall' ,async (req,res) =>{
+router.get('/getall' ,async (req,res) =>{
 
   try {
-   usr= await User.find();
+   usr= await User.find({});
      res.status(200).send(usr);
   
   } catch (errorUsrgta) {
@@ -91,8 +102,27 @@ router.post('/getall' ,async (req,res) =>{
   
 });
 
+router.get('/getuser/:id', async (req, res) => {
+   try {
+     // Corrected the query to use req.params.id for the user lookup
+     const usr = await User.findById(req.params.id); 
+ 
+     // Check if the user exists
+     if (!usr) {
+       return res.status(404).send({ message: "User not found" });
+     }
+ 
+     // Return the user if found
+     res.status(200).send(usr);
+   } catch (errorUsrgta) {
+     // Handle errors, such as invalid ID format
+     console.error(errorUsrgta);
+     res.status(400).send({ message: "Error fetching user", error: errorUsrgta });
+   }
+ });
+ 
 
-router.post('/delete/:id' ,async (req,res) =>{
+router.get('/delete/:id' ,async (req,res) =>{
      try{
         id=req.params.id;
         deletedusr=await User.findOneAndDelete({_id:id})
@@ -105,7 +135,18 @@ router.post('/delete/:id' ,async (req,res) =>{
 });
 
 
-
+router.put('/user/update/:id', async (req, res) => {
+   const { id } = req.params;
+   const data = req.body;
+ 
+   try {
+     const updatedUser = await User.findByIdAndUpdate(id, data, { new: true });
+     res.status(200).send(updatedUser);
+   } catch (err) {
+     res.status(400).send({ message: "Error updating user", error: err });
+   }
+ });
+ 
 
 router.post('/update/:id' ,async (req,res) =>{
   try{
@@ -126,7 +167,18 @@ router.post('/update/:id' ,async (req,res) =>{
 
 
 
-
+router.put('/user/update/:id', async (req, res) => {
+   const { id } = req.params;
+   const data = req.body;
+ 
+   try {
+     const updatedUser = await User.findByIdAndUpdate(id, data, { new: true });
+     res.status(200).send(updatedUser);
+   } catch (err) {
+     res.status(400).send(err);
+   }
+ });
+ 
 
 
 

@@ -2,7 +2,7 @@ const mongoose =require('mongoose');
 
 const User=mongoose.model('User' , {
 
-fullname:{
+user_name:{
     type: String
 },
 

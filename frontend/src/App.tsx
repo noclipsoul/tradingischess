@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/public/Home';
-import About from './pages/public/About';
-import Contact from './pages/public/Contact';
-import Dashboard from './pages/admin/Dashboard';
-import Users from './pages/admin/Users';
-import Settings from './pages/admin/Settings';
+import Home from './components/pages/Main/Home/Home';
+import About from './components/pages/Main/About/About';
+import Contact from './components/pages/Main/Contact/Contact';
+import Dashboard from './components/pages/admin/Dashboard/Dashboard';
+import Users from './components/pages/admin/Users/Users';
+import AddUser from './components/pages/admin/Users/AddUser';
+import UpdateUser from './components/pages/admin/Users/UpdateUser';
+import Settings from './components/pages/admin/Settings/Settings';
 import AdminLayout from './components/admin/AdminLayout';
-import PublicLayout from './components/public/PublicLayout';
+import PublicLayout from './components/Main/PublicLayout';
 const App: React.FC = () => (
   <Router>
     <Routes>
@@ -23,6 +25,8 @@ const App: React.FC = () => (
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="users" element={<Users />} />
+        <Route path="AddUser" element={<AddUser />} />
+        <Route path="UpdateUser/:id" element={<UpdateUser />} />
         <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const PublicNavbar: React.FC = () => (
-  <nav className="bg-gray-800 text-white shadow-md">
+  <nav className="bg-white shadow-md">
     <div className="container mx-auto flex justify-between items-center px-4 py-3">
       {/* Logo */}
       <div>
@@ -12,7 +12,7 @@ const PublicNavbar: React.FC = () => (
       </div>
 
       {/* Navigation Links */}
-      <div className="space-x-6">
+      <div className="space-x-6 ">
         <Link to="/" className="hover:text-blue-400">
           Home
         </Link>
