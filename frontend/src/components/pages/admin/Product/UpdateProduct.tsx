@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-interface User {
-    _id:string;
-  user_name: string;
-  email: string;
-  password: string;
+interface Product {
+  _id: string;
+  name: string;
+  discription: string;
+  pform: [];
+  image: string;
 }
 
-const EditUser: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Extract user id from URL
-  const [user, setUser] = useState<User | null>(null); // State to store user data
+const EditProduct: React.FC = () => {
+  const { id } = useParams<{ id: string }>(); // Extract product id from URL
+  const [product, setProduct] = useState<Product | null>(null); // State to store product data
   const [loading, setLoading] = useState<boolean>(true); // Loading state
   const [error, setError] = useState<string | null>(null); // Error state
-  const [formData, setFormData] = useState<User>({
+  const [formData, setFormData] = useState<Product>({
     _id:"",
-    user_name: "",
-    email: "",
-    password: "",
+    name: "",
+    discription: "",
+    pform: [],
+    image: "",
   }); // Form data state
   const navigate = useNavigate(); // To navigate after updating
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchProduct = async () => {
       try {
-        const response = await fetch(`/user/getuser/${id}`);
+        const response = await fetch(`/Product/getProduct/${id}`);
         if (!response.ok) {
-          throw new Error("Failed to fetch user");
+          throw new Error("Failed to fetch Product");
         }
-        const data: User = await response.json();
-      const user= setUser(data);
-        setFormData(data); // Set the form data with the fetched user data
+        const data: Product = await response.json();
+      const Product= setProduct(data);
+        setFormData(data); // Set the form data with the fetched product data
       } catch (err) {
         setError((err as Error).message);
       } finally {
@@ -38,7 +40,7 @@ const EditUser: React.FC = () => {
       }
     };
 
-    fetchUser();
+    fetchProduct();
   }, [id]);
 
   // Handle form field change
@@ -53,7 +55,7 @@ const EditUser: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/user/updateuser/${formData._id}`, {
+      const response = await fetch(`/Product/updateProduct/${formData._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +65,7 @@ const EditUser: React.FC = () => {
   
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Failed to update user: ${response.status} - ${errorText}`);
+        throw new Error(`Failed to update Product: ${response.status} - ${errorText}`);
       }
   
       navigate("/admin");
@@ -78,17 +80,17 @@ const EditUser: React.FC = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       <main className="flex-1 p-6">
-        <h3 className="text-xl font-semibold mb-4">Edit User</h3>
+        <h3 className="text-xl font-semibold mb-4">Edit Product</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="user_name" className="block text-sm font-medium">
-              Username
+            <label htmlFor="product_name" className="block text-sm font-medium">
+              name
             </label>
             <input
               type="text"
-              id="user_name"
-              name="user_name"
-              value={formData.user_name}
+              id="product_name"
+              name="product_name"
+              value={formData.name}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded w-full"
               required
@@ -102,7 +104,7 @@ const EditUser: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
+              value={formData.discription}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded w-full"
               required
@@ -116,7 +118,7 @@ const EditUser: React.FC = () => {
               type="password"
               id="password"
               name="password"
-              value={formData.password}
+              value={formData.image}
               onChange={handleChange}
               className="mt-1 p-2 border border-gray-300 rounded w-full"
               required
@@ -126,7 +128,7 @@ const EditUser: React.FC = () => {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-700 transition-colors"
           >
-            Update User
+            Update Product
           </button>
         </form>
       </main>
@@ -134,4 +136,4 @@ const EditUser: React.FC = () => {
   );
 };
 
-export default EditUser;
+export default EditProduct;

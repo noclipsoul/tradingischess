@@ -148,26 +148,7 @@ router.put('/user/update/:id', async (req, res) => {
  });
  
 
-router.post('/update/:id' ,async (req,res) =>{
-  try{
-     id=req.params.id;
-     newusr=req.body
-     updatedusr=await User.findOneAndDelete({_id:id},newusr)
-     res.status(200).send(updatedusr);
-  }
-     catch(errorusrupd)
-     {
-        res.status(400).send(errorusrupd)
-     } 
-});
-
-
-
-
-
-
-
-router.put('/user/update/:id', async (req, res) => {
+router.put('/updateuser/:id' ,async (req,res) =>{
    const { id } = req.params;
    const data = req.body;
  
@@ -175,10 +156,13 @@ router.put('/user/update/:id', async (req, res) => {
      const updatedUser = await User.findByIdAndUpdate(id, data, { new: true });
      res.status(200).send(updatedUser);
    } catch (err) {
-     res.status(400).send(err);
+     res.status(400).send({ message: "Error updating user", error: err });
    }
- });
- 
+});
+
+
+
+
 
 
 

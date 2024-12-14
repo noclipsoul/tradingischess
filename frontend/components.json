@@ -1,0 +1,17 @@
+{
+    "components": {
+      "table": {
+        "import": {
+          "default": false,
+          "path": "@/components/ui/table"
+        }
+      },
+      "button": {
+        "import": {
+          "default": false,
+          "path": "@/components/ui/button"
+        }
+      }
+    }
+  }
+  
