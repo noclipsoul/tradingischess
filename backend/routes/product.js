@@ -45,7 +45,7 @@ router.post('/create', async (req, res) => {
      
      } catch (errorProdgta) {
          
-        res.status(400).send(errorProdgta) 
+        res.status(401).send(errorProdgta) 
      }
      
   });
@@ -64,13 +64,25 @@ router.post('/create', async (req, res) => {
   });
   
   
+  router.post('/getproduct/:id' ,async (req,res) =>{
+   try{
+      id=req.params.id;
+      deletedProd=await Product.findOne({_id:id})
+      res.status(200).send(deletedProd);
+   }
+      catch(errorProddel)
+      {
+         res.status(400).send(errorProddel)
+      } 
+});
+
   
   
   router.post('/update/:id' ,async (req,res) =>{
      try{
-        id=req.params.id;
-        newProd=req.body
-        updatedProd=await Product.findOneAndDelete({_id:id},newProd)
+       const  id=req.params.id;
+      const  newProd=req.body
+      const  updatedProd=await Product.findOneAndDelete({_id:id},newProd)
         res.status(200).send(updatedProd);
      }
         catch(errorProdupdate)

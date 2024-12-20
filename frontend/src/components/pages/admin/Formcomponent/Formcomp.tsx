@@ -70,6 +70,7 @@ const Dashboard: React.FC = () => {
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(`/formcomp/delete/${id}`);
+      console.log(id)
       if (!response.ok) {
         throw new Error("Failed to delete formcomp");
       }
@@ -105,7 +106,6 @@ const Dashboard: React.FC = () => {
               <table className="table-auto w-full border-collapse border border-gray-300">
                 <thead>
                   <tr>
-                    <th className="border border-gray-300 px-4 py-2">ID</th>
                     <th className="border border-gray-300 px-4 py-2">Name</th>
                     <th className="border border-gray-300 px-4 py-2">type</th>
                     <th className="border border-gray-300 px-4 py-2">option</th>
@@ -120,7 +120,6 @@ const Dashboard: React.FC = () => {
                 <tbody>
                   {formcomps.map((formcomp) => (
                     <tr key={formcomp._id}>
-                      <td className="border border-gray-300 px-4 py-2">{formcomp._id}</td>
                       <td className="border border-gray-300 px-4 py-2">{formcomp.name}</td>
                       <td className="border border-gray-300 px-4 py-2">{formcomp.type}</td>
                       <td className="border border-gray-300 px-4 py-2">{formcomp.options}</td>

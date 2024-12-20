@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route,Link  } from 'react-router-dom';
 import Home from './components/pages/Main/Home/Home';
 import About from './components/pages/Main/About/About';
 import Contact from './components/pages/Main/Contact/Contact';
@@ -21,6 +21,12 @@ import UpdateFormcomp from './components/pages/admin/Formcomponent/UpdateFormcom
 import Settings from './components/pages/admin/Settings/Settings';
 import AdminLayout from './components/admin/AdminLayout';
 import PublicLayout from './components/Main/PublicLayout';
+
+import Pform from './components/pages/admin/PForm/Pform';
+import AddPform from './components/pages/admin/PForm/AddPform';
+import UpdatePform from './components/pages/admin/PForm/UpdatePform';
+import FormBuilderPagea from "./pages/FormBuilderPage";
+import EntityFormPage from "./pages/EntityFormPage";
 const App: React.FC = () => (
   <Router>
     <Routes>
@@ -45,6 +51,17 @@ const App: React.FC = () => (
         <Route path="AddFormcomp" element={<AddFormcomp />} />
         <Route path="UpdateFormcomp/:id" element={<UpdateFormcomp />} />
         
+
+        
+        <Route path="Pform" element={<Pform/>} />
+        <Route path="AddPform" element={<AddPform />} />
+        <Route path="UpdatePform:id" element={<UpdatePform />} />
+
+        <Route path="aab" element={<FormBuilderPagea />} />
+        <Route path="bba" element={<EntityFormPage />} />
+
+
+
         <Route path="settings" element={<Settings />} />
       </Route>
     </Routes>

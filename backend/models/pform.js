@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const PFormSchema = new mongoose.Schema({
-  form_components: [{ type: mongoose.Schema.Types.ObjectId, ref: 'FormComp' }], // List of components
-  product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }, // Associated product
+const FormSchema = new mongoose.Schema({
+  formName: { type: String, required: true, unique: true },
+  components: { type: Array, default: [] }, // JSON structure of form components
 });
 
-const PForm = mongoose.model('PForm', PFormSchema);
-module.exports = PForm;
+module.exports = mongoose.model("Form", FormSchema);

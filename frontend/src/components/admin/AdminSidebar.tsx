@@ -8,7 +8,9 @@ const AdminSidebar: React.FC = () => (
       <li><Link to="/admin/users" className="hover:text-blue-400">Users</Link></li>
       <li><Link to="/admin/products" className="hover:text-blue-400">products</Link></li>
       <li><Link to="/admin/Formcomp" className="hover:text-blue-400">Formcomponent</Link></li>
+      <li><Link to="/admin/PForm" className="hover:text-blue-400">PForm</Link></li>
       <li><Link to="/admin/settings" className="hover:text-blue-400">Settings</Link></li>
+
     </ul>
   </div>
 );

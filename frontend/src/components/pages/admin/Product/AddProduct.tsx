@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
+
+
 const AddProduct: React.FC = () => {
   const [ProductName, setProductName] = useState<string>("");
   const [Discription, setDiscription] = useState<string>("");
