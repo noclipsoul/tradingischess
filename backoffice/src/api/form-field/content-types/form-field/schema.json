@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "form_fields",
+  "info": {
+    "singularName": "form-field",
+    "pluralName": "form-fields",
+    "displayName": "FormField",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "name": {
+      "type": "uid",
+      "targetField": "label"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "radio",
+        "select",
+        "multiselect"
+      ]
+    },
+    "required": {
+      "type": "boolean"
+    },
+    "options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "formcomp.field-option"
+    },
+    "FormField": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::form.form",
+      "inversedBy": "fields"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_components_forms",
+  "info": {
+    "displayName": "form"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

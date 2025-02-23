@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_features_cards",
+  "info": {
+    "displayName": "Features Cards",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "featurescard": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.features-card"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "string"
+    }
+  }
+}

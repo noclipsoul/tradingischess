@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_formcomp_field_options",
+  "info": {
+    "displayName": "FieldOption"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  }
+}
