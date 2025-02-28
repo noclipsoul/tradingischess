@@ -1,12 +1,34 @@
 {
   "collectionName": "components_layout_footers",
   "info": {
-    "displayName": "footer"
+    "displayName": "footer",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "text": {
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.link"
+    },
+    "descriptionlogo": {
+      "type": "text"
+    },
+    "socialLink": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.link"
+    },
+    "copyright_description": {
+      "type": "text"
+    },
+    "copyright": {
       "type": "string"
+    },
+    "Foot_nav_link": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.footern-avigation-links"
     }
   }
 }

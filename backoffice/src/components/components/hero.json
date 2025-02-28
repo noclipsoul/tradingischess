@@ -1,22 +1,17 @@
 {
-  "collectionName": "components_components_links",
+  "collectionName": "components_components_heroes",
   "info": {
-    "displayName": "Link",
-    "description": ""
+    "displayName": "hero"
   },
   "options": {},
   "attributes": {
-    "url": {
+    "heading": {
       "type": "string"
     },
-    "text": {
+    "subHeading": {
       "type": "string"
     },
-    "isExternal": {
-      "type": "boolean",
-      "default": false
-    },
-    "icon": {
+    "image": {
       "allowedTypes": [
         "images",
         "files",
@@ -25,6 +20,11 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "btn": {
+      "type": "component",
+      "repeatable": false,
+      "component": "components.link"
     }
   }
 }

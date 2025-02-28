@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_components_footern_avigation_links",
+  "info": {
+    "displayName": "footern_avigation_links"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.link"
+    }
+  }
+}

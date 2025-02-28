@@ -396,7 +396,40 @@ export interface ApiFormFieldFormField extends Struct.CollectionTypeSchema {
     options: Schema.Attribute.Component<'formcomp.field-option', true>;
     publishedAt: Schema.Attribute.DateTime;
     required: Schema.Attribute.Boolean;
-    type: Schema.Attribute.Enumeration<['radio', 'select', 'multiselect']>;
+    type: Schema.Attribute.Enumeration<
+      [
+        'checkbox   ',
+        'radiobox   ',
+        'dropdown   ',
+        'text   ',
+        'textarea   ',
+        'email   ',
+        'password   ',
+        'number   ',
+        'url   ',
+        'tel   ',
+        'date   ',
+        'time   ',
+        'datetime-local   ',
+        'color   ',
+        'file   ',
+        'range   ',
+        'search   ',
+        'multi-select   ',
+        'toggle   ',
+        'rating   ',
+        'image   ',
+        'rich-text   ',
+        'address   ',
+        'name   ',
+        'captcha   ',
+        'tags   ',
+        'dynamic-list   ',
+        'accordion   ',
+        'hidden   ',
+        'static-text ',
+      ]
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -477,15 +510,15 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
       [
-        'layout.hero-section',
         'layout.features-section',
         'layout.features-cards',
+        'layout.hero-section',
+        'layout.references',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    header: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -525,6 +558,9 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     price: Schema.Attribute.Float;
     publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      ['ExpertAdvisor', 'Indicators', 'Services']
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

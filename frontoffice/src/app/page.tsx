@@ -5,10 +5,12 @@ import { FeatureSection } from "@/components/custom/FeaturesSection";
 
 import { FeatureCard } from "@/components/custom/FeaturesCard";
 
+import { Reference } from "@/components/custom/references";
 const blockComponents = {
   "layout.hero-section": HeroSection,
   "layout.features-section": FeatureSection,
   "layout.features-cards": FeatureCard ,
+  "layout.references": Reference ,
 };
 
 function blockRenderer(block: any) {
@@ -21,6 +23,9 @@ function blockRenderer(block: any) {
 
 export default async function Home() {
   const strapiData = await getHomePageData();
+ 
+  
   const { blocks } = strapiData?.data || [];
+
   return <main>{blocks.map(blockRenderer)}</main>;
 }

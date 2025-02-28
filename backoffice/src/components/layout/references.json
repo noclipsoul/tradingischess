@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_layout_references",
+  "info": {
+    "displayName": "references",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.reference"
+    }
+  }
+}

@@ -43,13 +43,16 @@ export function Header({ data }: Readonly<HeaderProps>) {
       }`}
     >
       <div className="  px-[11%] py-2 flex items-center justify-between">
+<a href="/">
         <StrapiImage
               alt={ "no alternative text"}
               className="w-[103.68] h-[32]"
-              height={32}
+              height={60}
               src={logo.url}
-              width={50.68}
+              width={162}
+            
             />
+        </a>
         {/* Mobile menu toggle button (hidden on md and larger screens) */}
         <button
           className="md:hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
@@ -85,7 +88,7 @@ export function Header({ data }: Readonly<HeaderProps>) {
           ))}
 
         </nav>
-       <button className="px-2 py-2 bg-white rounded">contact us</button>
+       <button className="px-2 py-2 bg-green-500 text-white rounded">contact us</button>
         <nav
           className={`md:hidden absolute top-full left-0 w-full py-4 px-6 bg-black dark:bg-gray-800 transition duration-300 ease-in-out ${
             isMenuOpen ? "block" : "hidden"

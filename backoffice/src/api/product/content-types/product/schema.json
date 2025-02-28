@@ -26,6 +26,14 @@
       "relation": "oneToOne",
       "target": "api::form.form",
       "inversedBy": "product"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ExpertAdvisor",
+        "Indicators",
+        "Services"
+      ]
     }
   }
 }

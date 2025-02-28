@@ -12,15 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "header": {
-      "type": "string"
-    },
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "layout.hero-section",
         "layout.features-section",
-        "layout.features-cards"
+        "layout.features-cards",
+        "layout.hero-section",
+        "layout.references"
       ]
     }
   }

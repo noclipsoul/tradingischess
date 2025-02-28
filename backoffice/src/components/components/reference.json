@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_components_references",
+  "info": {
+    "displayName": "reference",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

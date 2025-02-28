@@ -1,6 +1,14 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
-import {StrapiImage} from "@/components/custom/StrapiImage";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import { StrapiImage } from "@/components/custom/StrapiImage";
+
 interface Image {
   id: number;
   documentId: string;
@@ -14,52 +22,58 @@ interface Link {
   text: string;
 }
 
+interface Hero { 
+  id:number;
+  heading: string;
+  subHeading: string;
+  image: {
+    id: number;
+    documentId: string;
+    url: string;
+    alternativeText: string;
+  };
+  btn: Link;
+}
 interface HeroSectionProps {
   id: number;
   documentId: string;
   __component: string;
-  heading: string;
-  subHeading: string;
-  image: Image;
-  link: Link;
+  name:string;
+  heros: Hero [];
+ 
 }
 
+
 export function HeroSection({ data }: { readonly data: HeroSectionProps }) {
-  const { heading, subHeading, image, link } = data;
-
+  const {   heros } = data;
   return (
-    <header className=" relative h-screen overflow-hidden" id="">
-      <div >
-      <StrapiImage
-        alt={image.alternativeText ?? "no alternative text"}
-        className="absolute inset-0 object-cover w-fit h-fit"
-        height={1080}
-        src={image.url}
-        width={1920}
-      />
-      </div>
-     
-      <div className="flex items-center justify-center text-center min-h-screen w-full h-full">
-
-        <div className="backdrop-blur-md rounded-xl bg-opacity-50 shadow-lg p-[12%]">
-        <h1 className="text-4xl font-semibold text-white ">  {heading}</h1>
-        <p className="text-md text-white mt-2">    {subHeading}</p>
-
-        <div className="items-center text-center p-7 ">
-          <button className="px-6 py-3 bg-white mr-5 rounded  hover:text-white hover:bg-black  ">Start trading </button>
-          <button className="px-6 py-3 bg-transparent text-white rounded hover:text-black hover:bg-white ">Learn more </button>
-         
-
-        </div>
-
-    </div>
-      </div>
-
-
-       
-        
-      
-  
+    <header className="relative h-screen overflow-hidden">
+      <Swiper
+        modules={[Autoplay, Pagination, EffectFade]}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        effect="fade"
+        className="w-full h-full"
+      >
+        {heros.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            <div className="relative w-full h-full">
+              <StrapiImage
+                src={slide.image.url}
+                alt={slide.image.alternativeText?? "no alternative text"} width={500} height={500}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-6">
+                <h1 className="text-4xl md:text-6xl text-white font-bold mb-4">{slide.heading}</h1>
+                <p className="text-lg md:text-2xl text-white mb-6">{slide.subHeading}</p>
+                <Link href={slide.btn.url} className="px-5 py-3 text-white bg-green-600 rounded">
+                 {slide.btn.text}
+                </Link>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </header>
   );
 }
